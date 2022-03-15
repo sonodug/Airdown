@@ -9,10 +9,23 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _reward;
     [SerializeField] private ParticleSystem _explosionEffect;
 
+    [SerializeField] private List<Transform> _shootPoints;
+
+    [Range(2.0f, 6.0f)]
+    [SerializeField] private float _shootDelaySpread;
+    [SerializeField] private EnemyWeapon _weapon;
+    
+    private float _timeAfterLastShoot;
+
     private Player _target;
 
     public Player Target => _target;
-    
+
+    private void Start()
+    {
+        _shootDelaySpread = Random.Range(2, _shootDelaySpread);
+    }
+
     public void Init(Player target)
     {
         _target = target;
@@ -24,13 +37,21 @@ public class Enemy : MonoBehaviour
 
         if (_health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
     private void Die()
     {
         gameObject.SetActive(false);
+    }
+
+    private void Shoot()
+    {
+        for (int i = 0; i < _shootPoints.Count; i++)
+        {
+            Instantiate(_weapon, _shootPoints[i].position, Quaternion.identity);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,6 +64,17 @@ public class Enemy : MonoBehaviour
         if (collision.TryGetComponent<DestroyerObstacle>(out DestroyerObstacle destroyer))
         {
             Die();
+        }
+    }
+
+    private void Update()
+    {
+        _timeAfterLastShoot += Time.deltaTime;
+
+        if (_timeAfterLastShoot >= _shootDelaySpread)
+        {
+            Shoot();
+            _timeAfterLastShoot = 0;
         }
     }
 }

@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
     [SerializeField] private int _health;
     [SerializeField] private List<Plane> _aviation;
     [SerializeField] private List<Transform> _shootPoints;
+    [SerializeField] private float _shootDelay;
 
     private Plane _currentPlane;
     private int _currentPlaneNumber = 0;
     private int _currentHealth;
+    private float _timeAfterLastShoot;
 
     private void Start()
     {
@@ -19,9 +21,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        _timeAfterLastShoot += Time.deltaTime;
+        if (Input.GetMouseButtonDown(0) && (_timeAfterLastShoot >= _shootDelay))
         {
             _currentPlane.Shoot(_shootPoints[0]);
+            _timeAfterLastShoot = 0;
         }
     }
 
