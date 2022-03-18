@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,12 +15,18 @@ public class Enemy : MonoBehaviour
     [Range(2.0f, 6.0f)]
     [SerializeField] private float _shootDelaySpread;
     [SerializeField] private EnemyWeapon _weapon;
-    
+
     private float _timeAfterLastShoot;
+
+    private bool _isDied = false;
+    public bool IsDied => _isDied;
 
     private Player _target;
 
     public Player Target => _target;
+
+    public event UnityAction<Enemy> Dying;
+    public event UnityAction Died;
 
     private void Start()
     {
@@ -44,6 +51,8 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         gameObject.SetActive(false);
+        Dying?.Invoke(this);
+        Died?.Invoke();
     }
 
     private void Shoot()

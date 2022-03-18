@@ -123,10 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c8995846986a9428132a5d0b660e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
-  _speed: 5
-  _shootEffect: {fileID: 0}
-  _explosionEffect: {fileID: 0}
+  Damage: 1
+  Speed: 5
+  ShootEffect: {fileID: 0}
+  ExplosionEffect: {fileID: 0}
 --- !u!50 &-4905455489166755828
 Rigidbody2D:
   serializedVersion: 4
