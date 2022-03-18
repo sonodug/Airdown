@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,10 +10,14 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> _pool = new List<GameObject>();
     private static int _enemyDieCounter = 0;
 
+    public bool IsAllEnemyDie { get; private set; }
+
     public event UnityAction<int, int> EnemyDyingCountChanged;
+    public event UnityAction AllEnemyInCurrentWaveDied;
 
     protected void Initialize(List<GameObject> prefabs, int count)
     {
+        IsAllEnemyDie = false;
         for (int i = 0; i < count; i++)
         {
             int randomIndex = Random.Range(0, prefabs.Count);
@@ -35,6 +38,13 @@ public class ObjectPool : MonoBehaviour
     public void DieCountChanged()
     {
         _enemyDieCounter++;
+        Debug.Log(_enemyDieCounter);
+        Debug.Log(_pool.Count);
         EnemyDyingCountChanged?.Invoke(_enemyDieCounter, _pool.Count);
+        if (_enemyDieCounter == _pool.Count)
+        {
+            IsAllEnemyDie = true;
+            AllEnemyInCurrentWaveDied?.Invoke();
+        }
     }
 }

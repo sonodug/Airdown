@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,9 +16,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyWeapon _weapon;
 
     private float _timeAfterLastShoot;
-
-    private bool _isDied = false;
-    public bool IsDied => _isDied;
 
     private Player _target;
 

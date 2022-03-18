@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class EnemySpawner : ObjectPool
@@ -16,13 +16,11 @@ public class EnemySpawner : ObjectPool
     private int _spawned;
     private float _intervalBetweenWaves;
 
-    public event UnityAction AllEnemyDied;
     public event UnityAction<int, int> EnemyCountChanged;
    
     private void Start()
     {
         SetWave(_currentWaveIndex);
-        Initialize(_currentWave.Templates, _currentWave.Count);
     }
 
     private void Update()
@@ -51,6 +49,13 @@ public class EnemySpawner : ObjectPool
             }
         }
 
+        Debug.Log(IsAllEnemyDie);
+        if (IsAllEnemyDie)
+        {
+            Debug.Log("a");
+            NextWave();
+        }
+
         if (_currentWave.Count <= _spawned)
         {
             _currentWave = null;
@@ -68,11 +73,12 @@ public class EnemySpawner : ObjectPool
     {
         _currentWave = _waves[index];
         EnemyCountChanged?.Invoke(0, 1);
+        Initialize(_currentWave.Templates, _currentWave.Count);
     }
 
     private void NextWave()
     {
-        SetWave(_currentWaveIndex);
+        SetWave(_currentWaveIndex++);
         _spawned = 0;
     }
 }
