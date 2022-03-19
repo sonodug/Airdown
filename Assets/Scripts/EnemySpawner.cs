@@ -30,6 +30,12 @@ public class EnemySpawner : ObjectPool
 
     private void SpawnWithSpread()
     {
+        if (IsAllEnemyDie && (_waves.Count > _currentWaveIndex + 1))
+        {
+            Debug.Log("a");
+            NextWave();
+        }
+
         if (_currentWave == null)
             return;
 
@@ -49,13 +55,6 @@ public class EnemySpawner : ObjectPool
             }
         }
 
-        Debug.Log(IsAllEnemyDie);
-        if (IsAllEnemyDie)
-        {
-            Debug.Log("a");
-            NextWave();
-        }
-
         if (_currentWave.Count <= _spawned)
         {
             _currentWave = null;
@@ -71,6 +70,7 @@ public class EnemySpawner : ObjectPool
 
     private void SetWave(int index)
     {
+        Debug.Log(index);
         _currentWave = _waves[index];
         EnemyCountChanged?.Invoke(0, 1);
         Initialize(_currentWave.Templates, _currentWave.Count);
@@ -78,7 +78,9 @@ public class EnemySpawner : ObjectPool
 
     private void NextWave()
     {
-        SetWave(_currentWaveIndex++);
+        Debug.Log("a");
+
+        SetWave(++_currentWaveIndex);
         _spawned = 0;
     }
 }

@@ -9,6 +9,7 @@ public class ObjectPool : MonoBehaviour
 
     private List<GameObject> _pool = new List<GameObject>();
     private static int _enemyDieCounter = 0;
+    private int _poolOffset;
 
     public bool IsAllEnemyDie { get; private set; }
 
@@ -17,6 +18,7 @@ public class ObjectPool : MonoBehaviour
 
     protected void Initialize(List<GameObject> prefabs, int count)
     {
+        _poolOffset = count;
         IsAllEnemyDie = false;
         for (int i = 0; i < count; i++)
         {
@@ -38,11 +40,11 @@ public class ObjectPool : MonoBehaviour
     public void DieCountChanged()
     {
         _enemyDieCounter++;
-        Debug.Log(_enemyDieCounter);
-        Debug.Log(_pool.Count);
-        EnemyDyingCountChanged?.Invoke(_enemyDieCounter, _pool.Count);
-        if (_enemyDieCounter == _pool.Count)
+        EnemyDyingCountChanged?.Invoke(_enemyDieCounter, _poolOffset);
+        if (_enemyDieCounter == _poolOffset)
         {
+            _enemyDieCounter = 0;
+            Debug.Log("a");
             IsAllEnemyDie = true;
             AllEnemyInCurrentWaveDied?.Invoke();
         }
