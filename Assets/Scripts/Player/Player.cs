@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private int _currentHealth;
     private float _timeAfterLastShoot;
 
+    public int Money { get; private set; }
+
     private void Start()
     {
         _currentPlane = _aviation[0];
