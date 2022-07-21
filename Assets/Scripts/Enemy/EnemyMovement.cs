@@ -22,7 +22,6 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 _targetPosition = _enemy.Target.transform.position;
 
-
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(_targetPosition.x, _targetPosition.y + _targetOffsetY, 0), _speed * Time.deltaTime);
     }
 }
