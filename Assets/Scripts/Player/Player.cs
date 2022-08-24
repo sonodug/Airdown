@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
         _timeAfterLastShoot += Time.deltaTime;
         if (Input.GetMouseButtonDown(0) && (_timeAfterLastShoot >= _shootDelay))
         {
+            //залочить ui?
             _currentPlane.Shoot(_shootPoints[0]);
             _timeAfterLastShoot = 0;
         }

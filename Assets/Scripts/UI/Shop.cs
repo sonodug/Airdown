@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Shop : MonoBehaviour
 {
+    [Inject] private Player _player;
+
     [SerializeField] private List<Plane> _planes = new List<Plane> ();
-    [SerializeField] private Player _player;
     [SerializeField] private PlaneView _template;
     [SerializeField] private GameObject _itemContainer;
 

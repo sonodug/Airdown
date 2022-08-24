@@ -1,18 +1,20 @@
 using UnityEngine;
 using TMPro;
+using Zenject;
 
 public class ProgressBar : Bar
 {
-    [SerializeField] private EnemySpawner _spawner;
+    [Inject] private EnemySpawner _spawner;
     [SerializeField] private TMP_Text _text;
 
     private static int _counter = 1;
 
     private void OnEnable()
     {
+        Debug.Log("sub");
         _spawner.AllEnemyInCurrentWaveDied += SetWaveTextCount;
         _spawner.AllEnemyInCurrentWaveDied += ResetValue;
-        _spawner.EnemyDyingCountChanged += OnValueChanged;
+        _spawner.EnemyDieCountChanged += OnValueChanged;
         Slider.value = 0;
     }
 
@@ -20,11 +22,12 @@ public class ProgressBar : Bar
     {
         _spawner.AllEnemyInCurrentWaveDied -= SetWaveTextCount;
         _spawner.AllEnemyInCurrentWaveDied -= ResetValue;
-        _spawner.EnemyDyingCountChanged -= OnValueChanged;
+        _spawner.EnemyDieCountChanged -= OnValueChanged;
     }
 
     public void SetWaveTextCount()
     {
+        Debug.Log("hand");
         _counter++;
         string counter = _counter.ToString();
         _text.text = "Wave: " + counter;

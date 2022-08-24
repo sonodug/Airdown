@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _shootDelaySpread = Random.Range(2, _shootDelaySpread);
+        _shootDelaySpread = Random.Range(2, _shootDelaySpread); //тупо, лучше обойти этот захардкоженный этап и вынести в поле isRandom с Header
     }
 
     public void Init(Player target)

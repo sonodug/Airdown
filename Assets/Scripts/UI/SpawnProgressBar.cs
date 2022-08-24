@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class SpawnProgressBar : Bar
 {
-    [SerializeField] private EnemySpawner _spawner;
+    [Inject] private EnemySpawner _spawner;
 
     private void OnEnable()
     {

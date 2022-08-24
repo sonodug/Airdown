@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Zenject;
 
 public class EnemySpawner : ObjectPool
 {
     [SerializeField] private List<Wave> _waves;
-    [SerializeField] private Player _player;
+    [Inject] private Player _target;
 
     [SerializeField] private List<Transform> _spawnPoints;
 
@@ -17,6 +18,7 @@ public class EnemySpawner : ObjectPool
     private float _intervalBetweenWaves;
 
     public event UnityAction<int, int> EnemyCountChanged;
+    public event UnityAction AllEnemyInCurrentSessionDie;
    
     private void Start()
     {
@@ -65,22 +67,28 @@ public class EnemySpawner : ObjectPool
     {
         enemy.SetActive(true);
         enemy.transform.position = spawnPoint;
-        enemy.GetComponent<Enemy>().Init(_player);
+        enemy.GetComponent<Enemy>().Init(_target);
     }
 
     private void SetWave(int index)
     {
         Debug.Log(index);
         _currentWave = _waves[index];
+
+        if (_currentWave.Templates.Count == 0)
+        {
+            AllEnemyInCurrentSessionDie?.Invoke();
+            Debug.Log("You win");
+        }
+
         EnemyCountChanged?.Invoke(0, 1);
         Initialize(_currentWave.Templates, _currentWave.Count);
     }
 
     private void NextWave()
     {
-        Debug.Log("a");
-
         SetWave(++_currentWaveIndex);
+
         _spawned = 0;
     }
 }

@@ -13,13 +13,14 @@ public class ObjectPool : MonoBehaviour
 
     public bool IsAllEnemyDie { get; private set; }
 
-    public event UnityAction<int, int> EnemyDyingCountChanged;
+    public event UnityAction<int, int> EnemyDieCountChanged;
     public event UnityAction AllEnemyInCurrentWaveDied;
 
     protected void Initialize(List<GameObject> prefabs, int count)
     {
         _poolOffset = count;
         IsAllEnemyDie = false;
+
         for (int i = 0; i < count; i++)
         {
             int randomIndex = Random.Range(0, prefabs.Count);
@@ -40,7 +41,8 @@ public class ObjectPool : MonoBehaviour
     public void DieCountChanged()
     {
         _enemyDieCounter++;
-        EnemyDyingCountChanged?.Invoke(_enemyDieCounter, _poolOffset);
+        EnemyDieCountChanged?.Invoke(_enemyDieCounter, _poolOffset);
+
         if (_enemyDieCounter == _poolOffset)
         {
             _enemyDieCounter = 0;
