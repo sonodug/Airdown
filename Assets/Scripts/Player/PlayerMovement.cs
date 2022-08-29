@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 using System.Collections;
 using System.Collections.Generic;
+=======
+>>>>>>> dev
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour

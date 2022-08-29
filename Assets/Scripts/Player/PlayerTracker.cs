@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 
 public class PlayerTracker : MonoBehaviour
 {
     [SerializeField] private Player _player;
+=======
+using Zenject;
+
+public class PlayerTracker : MonoBehaviour
+{
+    [Inject] private Player _player;
+>>>>>>> dev
     private Vector3 _targetPosition;
 
     private void Awake()
     {
         if (!_player)
         {
+<<<<<<< HEAD
             _player = FindObjectOfType<Player>();
+=======
+            _player = FindObjectOfType<Player>(); //ahahaha
+>>>>>>> dev
         }
     }
 

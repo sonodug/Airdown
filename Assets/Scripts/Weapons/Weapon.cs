@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,4 +23,16 @@ public class Weapon : MonoBehaviour
             Destroy(gameObject);
         }
     }
+=======
+using UnityEngine;
+
+public abstract class Weapon : MonoBehaviour
+{
+    [SerializeField] protected int Damage;
+    [SerializeField] protected float Speed;
+    [SerializeField] protected ParticleSystem ShootEffect;
+    [SerializeField] protected ParticleSystem ExplosionEffect;
+
+    public abstract void MoveWeapon();
+>>>>>>> dev
 }
