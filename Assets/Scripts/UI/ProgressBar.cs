@@ -11,7 +11,6 @@ public class ProgressBar : Bar
 
     private void OnEnable()
     {
-        Debug.Log("sub");
         _spawner.AllEnemyInCurrentWaveDied += SetWaveTextCount;
         _spawner.AllEnemyInCurrentWaveDied += ResetValue;
         _spawner.EnemyDieCountChanged += OnValueChanged;
@@ -25,15 +24,14 @@ public class ProgressBar : Bar
         _spawner.EnemyDieCountChanged -= OnValueChanged;
     }
 
-    public void SetWaveTextCount()
+    private void SetWaveTextCount()
     {
-        Debug.Log("hand");
         _counter++;
         string counter = _counter.ToString();
         _text.text = "Wave: " + counter;
     }
 
-    public void ResetValue()
+    private void ResetValue()
     {
         Slider.value = 0;
     }

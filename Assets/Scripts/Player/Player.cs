@@ -23,18 +23,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        _timeAfterLastShoot += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && (_timeAfterLastShoot >= _shootDelay))
+        if (!PauseControl.GameIsPaused)
         {
-            //залочить ui?
-            _currentPlane.Shoot(_shootPoints[0]);
-            _timeAfterLastShoot = 0;
+            _timeAfterLastShoot += Time.deltaTime;
+            if (Input.GetMouseButtonDown(0) && (_timeAfterLastShoot >= _shootDelay))
+            {
+                _currentPlane.Shoot(_shootPoints[0]);
+                _timeAfterLastShoot = 0;
+            }
         }
     }
 
-    public void Die()
+    private void Die()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void GetDamage(int damage)

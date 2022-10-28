@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _shootDelaySpread = Random.Range(2, _shootDelaySpread); //тупо, лучше обойти этот захардкоженный этап и вынести в поле isRandom с Header
+        _shootDelaySpread = Random.Range(2, _shootDelaySpread);
     }
 
     public void Init(Player target)
@@ -53,9 +53,9 @@ public class Enemy : MonoBehaviour
 
     private void Shoot()
     {
-        for (int i = 0; i < _shootPoints.Count; i++)
+        foreach (var t in _shootPoints)
         {
-            Instantiate(_weapon, _shootPoints[i].position, Quaternion.identity);
+            Instantiate(_weapon, t.position, Quaternion.identity);
         }
     }
 

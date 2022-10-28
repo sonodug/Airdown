@@ -10,12 +10,14 @@ public class EnemySpawner : ObjectPool
     [Inject] private Player _target;
 
     [SerializeField] private List<Transform> _spawnPoints;
-
+    [SerializeField] private float _intervalBetweenWaves;
     private Wave _currentWave;
     private int _currentWaveIndex = 0;
     private float _timeAfterLastSpawn;
+    private float _timeBetweenWaves;
     private int _spawned;
-    private float _intervalBetweenWaves;
+
+    private bool _isAllEnemyInCurrentSessionDie = false;
 
     public event UnityAction<int, int> EnemyCountChanged;
     public event UnityAction AllEnemyInCurrentSessionDie;
@@ -32,18 +34,33 @@ public class EnemySpawner : ObjectPool
 
     private void SpawnWithSpread()
     {
-        if (IsAllEnemyDie && (_waves.Count > _currentWaveIndex + 1))
+        if (IsAllEnemyInCurrentWaveDie)
         {
-            Debug.Log("a");
-            NextWave();
+            _timeBetweenWaves += Time.deltaTime;
+            
+            if (_waves.Count > _currentWaveIndex + 1 && _timeBetweenWaves >= _intervalBetweenWaves)
+            {
+                Debug.Log("Next wave");
+                _timeBetweenWaves = 0;
+                
+                NextWave();
+            }
+            else
+            {
+                if (_isAllEnemyInCurrentSessionDie)
+                    return;
+                
+                AllEnemyInCurrentSessionDie?.Invoke();
+                Debug.Log("You win");
+            }
         }
 
-        if (_currentWave == null)
+        if (_currentWave.IsNull)
             return;
 
         _timeAfterLastSpawn += Time.deltaTime;
-
-        if (_timeAfterLastSpawn >= _currentWave.Delay)
+        
+        if (_timeAfterLastSpawn >= _currentWave.DelayBetweenSpawn)
         {
             if (TryGetObject(out GameObject enemy))
             {
@@ -57,9 +74,13 @@ public class EnemySpawner : ObjectPool
             }
         }
 
-        if (_currentWave.Count <= _spawned)
+        if (!_currentWave.IsNull)
         {
-            _currentWave = null;
+            if (_currentWave.Count <= _spawned)
+            {
+                Debug.Log($"null spawn {_currentWave}, {_currentWave.IsNull}");
+                _currentWave.IsNull = true;
+            }
         }
     }
 
@@ -72,14 +93,8 @@ public class EnemySpawner : ObjectPool
 
     private void SetWave(int index)
     {
-        Debug.Log(index);
+        Debug.Log($"Current wave index: {index}");
         _currentWave = _waves[index];
-
-        if (_currentWave.Templates.Count == 0)
-        {
-            AllEnemyInCurrentSessionDie?.Invoke();
-            Debug.Log("You win");
-        }
 
         EnemyCountChanged?.Invoke(0, 1);
         Initialize(_currentWave.Templates, _currentWave.Count);
@@ -97,6 +112,7 @@ public class EnemySpawner : ObjectPool
 public class Wave
 {
     public List<GameObject> Templates;
-    public float Delay;
+    public float DelayBetweenSpawn;
     public int Count;
+    public bool IsNull = false;
 }

@@ -16,14 +16,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
-        Move();
+        if(!PauseControl.GameIsPaused)
+            Move();
     }
 
     private void Move()

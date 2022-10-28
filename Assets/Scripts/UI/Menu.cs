@@ -1,19 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public void OpenPanel(GameObject panel)
+    public void OpenMenuPanel(GameObject panel)
     {
         panel.SetActive(true);
-        Time.timeScale = 0;
+        PauseControl.GameIsPaused = true;
+        PauseControl.PauseGame();
+        Debug.Log($"Timescale: {Time.timeScale}");
     }
-    
-    public void ClosePanel(GameObject panel)
+
+    public void CloseMenuPanel(GameObject panel)
     {
         panel.SetActive(false);
-        Time.timeScale = 1;
+        PauseControl.GameIsPaused = false;
+        PauseControl.PauseGame();
+    }
+
+    public void OpenNestedPanel(GameObject panel)
+    {
+        panel.SetActive(true);
+    }
+
+    public void CloseNestedPanel(GameObject panel)
+    {
+        panel.SetActive(false);
     }
     
     public void Exit()

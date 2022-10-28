@@ -17,6 +17,6 @@ public class PlayerWeapon : Weapon
     }
     public override void MoveWeapon()
     {
-        transform.Translate(Vector2.up * Speed * Time.deltaTime);
+        transform.Translate(Vector2.up * (Speed * Time.deltaTime));
     }
 }

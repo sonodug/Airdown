@@ -13,7 +13,7 @@ public class Shop : MonoBehaviour
 
     private void Start()
     {
-        foreach (Plane plane in _planes)
+        foreach (var plane in _planes)
         {
             AddItem(plane);
         }
