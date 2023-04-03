@@ -8,13 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] private List<Plane> _aviation;
     [SerializeField] private List<Transform> _shootPoints;
     [SerializeField] private float _shootDelay;
+    [SerializeField] private float _money;
 
     private Plane _currentPlane;
     private int _currentPlaneNumber = 0;
     private int _currentHealth;
     private float _timeAfterLastShoot;
 
-    public int Money { get; private set; }
+    public float Money => _money;
 
     private void Start()
     {
@@ -45,5 +46,10 @@ public class Player : MonoBehaviour
 
         if (_health <= 0)
             Die();
+    }
+
+    public void GetReward(float reward)
+    {
+        _money += reward;
     }
 }

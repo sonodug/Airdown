@@ -4,15 +4,15 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _tapEvadeForce;
+    [SerializeField] private float _clampX;
 
     private Vector3 _movementVector
     {
         get
         {
-            float directionX = Input.GetAxis("Horizontal");
-            float directionY = Input.GetAxis("Vertical");
+            float directionX = Input.GetAxisRaw("Horizontal");
 
-            return new Vector3(directionX, directionY, 0.0f);
+            return new Vector3(directionX, 0.0f, 0.0f);
         }
     }
 
@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + _movementVector, _moveSpeed * Time.deltaTime);
+        Vector3 clampedTargetPosition = transform.position;
+        clampedTargetPosition.x = Mathf.Clamp(clampedTargetPosition.x + _movementVector.x, -_clampX, _clampX);
+        transform.position = Vector3.MoveTowards(transform.position, clampedTargetPosition, _moveSpeed * Time.deltaTime);
     }
 }

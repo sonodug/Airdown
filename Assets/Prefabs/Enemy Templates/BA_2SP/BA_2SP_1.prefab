@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7503687589124594972}
   - component: {fileID: 7503687589124594975}
-  - component: {fileID: 7503687589124594970}
   - component: {fileID: 7503687589124594971}
-  - component: {fileID: 1096606902496181894}
+  - component: {fileID: 4374284625060154595}
+  - component: {fileID: 2134754809651281495}
   m_Layer: 0
-  m_Name: BluePlane
+  m_Name: BA_2SP_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,27 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7503687589124594970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7503687589124594974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044e9532f2afa5644b6551f8cde2a875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 5
-  _damage: 5
-  _reward: 0
-  _explosionEffect: {fileID: 0}
-  _shootPoints:
-  - {fileID: 7359396934081349394}
-  - {fileID: 6411448619919162006}
-  _shootDelaySpread: 6
-  _weapon: {fileID: 1747011971051381335, guid: 35d4ae7142c78264db64f76e7ec40a41, type: 3}
 --- !u!61 &7503687589124594971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.59375}
   m_EdgeRadius: 0
---- !u!114 &1096606902496181894
+--- !u!114 &4374284625060154595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,11 +122,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 7503687589124594974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf30b41177d13a459d30124a52e26d1, type: 3}
+  m_Script: {fileID: 11500000, guid: f8410b92ac2b42979260c0d589b44ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _targetOffsetY: 7
+  _speed: 3
+  _delayDuration: 1
+  _targetOffsetY: 10
+--- !u!114 &2134754809651281495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503687589124594974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93a633d64134a7a8fda0676d51cda89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyEffect: {fileID: 0}
+  Reward: 5
+  _health: 1
+  _shootPoints:
+  - {fileID: 7359396934081349394}
+  - {fileID: 6411448619919162006}
+  _shootDelaySpread: 3
+  _weapon: {fileID: 1747011971051381335, guid: 35d4ae7142c78264db64f76e7ec40a41, type: 3}
 --- !u!1 &8773836259318276343
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,7 +51,6 @@ public class EnemySpawner : ObjectPool
                     return;
                 
                 AllEnemyInCurrentSessionDie?.Invoke();
-                Debug.Log("You win");
             }
         }
 

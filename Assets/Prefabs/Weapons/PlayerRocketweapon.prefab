@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 5
-  Speed: 7
+  Speed: 15
   ShootEffect: {fileID: 0}
   ExplosionEffect: {fileID: 0}
 --- !u!50 &-4905455489166755828

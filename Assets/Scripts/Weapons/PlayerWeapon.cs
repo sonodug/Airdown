@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerWeapon : Weapon
 {
@@ -11,7 +12,7 @@ public class PlayerWeapon : Weapon
     {
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            enemy.TakeDamage(Damage);
+            enemy.Attacked(Damage);
             Destroy(gameObject);
         }
     }
