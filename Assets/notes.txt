@@ -11,85 +11,33 @@ self-guided
 1.targetoffsetpoint
 2.with delay
 
-vars of state machine:
-1-
-public class TargetMovement : MonoBehaviour, IMovable
-{
-    [SerializeField] private float _speed;
-    [SerializeField] private float _delayDuration;
+money validation
+player progression
 
-    [Range(5, 10)]
-    [SerializeField] private float _targetOffsetY;
+1.new types of enemies
+2.player progression
 
-    private Player _target;
-    private float _delayTimer;
-    private bool _isDelaying;
 
-    private enum State
-    {
-        FollowingTarget,
-        Delay
-    }
+avoid movement
+kamikaze
+pointmovement (with self guided)
 
-    private State _currentState;
+move imovable tupizna
 
-    private void Start()
-    {
-        _targetOffsetY = Random.Range(3, _targetOffsetY);
-        _currentState = State.FollowingTarget;
-    }
+04.04.23
+move imovable tupizna fix
+self guided enemy
+boss1
+level system
+transition to next level
 
-    private void Update()
-    {
-        switch (_currentState)
-        {
-            case State.FollowingTarget:
-                MoveTowardsTarget();
-                break;
-            case State.Delay:
-                HandleDelayState();
-                break;
-        }
-    }
+05.04.23
+history saves of attempts
+rebuild inputs on phone
+interaction with shop
 
-    private void MoveTowardsTarget()
-    {
-        if (_target)
-        {
-            Vector3 targetPosition = _target.transform.position;
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.x, targetPosition.y + _targetOffsetY, 0), _speed * Time.deltaTime);
-        }
-    }
+06.04.23
+build levels
+graphic particles and sprites
 
-    private void HandleDelayState()
-    {
-        _delayTimer -= Time.deltaTime;
-        if (_delayTimer <= 0)
-        {
-            _isDelaying = false;
-            _currentState = State.FollowingTarget;
-        }
-    }
-
-    public void Move()
-    {
-        // Do nothing, as this method is not used in the state machine
-    }
-
-    public void Move(Player target)
-    {
-        _target = target;
-        if (!_isDelaying)
-        {
-            _currentState = State.FollowingTarget;
-        }
-    }
-
-    public void StartDelay()
-    {
-        _isDelaying = true;
-        _delayTimer = _delayDuration;
-        _currentState = State.Delay;
-    }
-}
-2-
+k 08 dodsesasdelat, potim ai

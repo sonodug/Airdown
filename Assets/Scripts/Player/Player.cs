@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _health;
+    [SerializeField] private float _health;
     [SerializeField] private List<Plane> _aviation;
     [SerializeField] private List<Transform> _shootPoints;
     [SerializeField] private float _shootDelay;
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
     private int _currentHealth;
     private float _timeAfterLastShoot;
 
-    public float Money => _money;
+    public UnityAction<float> MoneyChanged;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
         _health -= damage;
 
@@ -51,5 +52,6 @@ public class Player : MonoBehaviour
     public void GetReward(float reward)
     {
         _money += reward;
+        MoneyChanged?.Invoke(_money);
     }
 }

@@ -5,11 +5,10 @@ using Zenject;
 
 public class Shop : MonoBehaviour
 {
-    [Inject] private Player _player;
-
     [SerializeField] private List<Plane> _planes = new List<Plane> ();
     [SerializeField] private PlaneView _template;
     [SerializeField] private GameObject _itemContainer;
+    [SerializeField] private MoneyController moneyController;
 
     private void Start()
     {
@@ -33,9 +32,13 @@ public class Shop : MonoBehaviour
 
     private void TrySellPlane(Plane plane, PlaneView view)
     {
-        if (plane.Price <= _player.Money)
+        if (plane.Price >= moneyController.MoneyBank)
+        {
+            Debug.Log("kal");
+        }
+        else
         {
             
-        }       
+        }
     }
 }

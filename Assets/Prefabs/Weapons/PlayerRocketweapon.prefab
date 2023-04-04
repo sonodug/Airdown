@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2708796713075788460}
   - component: {fileID: 8930298027567058400}
   - component: {fileID: -4905455489166755828}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerRocketweapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

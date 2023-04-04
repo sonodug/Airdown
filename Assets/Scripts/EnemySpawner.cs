@@ -40,7 +40,6 @@ public class EnemySpawner : ObjectPool
             
             if (_waves.Count > _currentWaveIndex + 1 && _timeBetweenWaves >= _intervalBetweenWaves)
             {
-                Debug.Log("Next wave");
                 _timeBetweenWaves = 0;
                 
                 NextWave();
@@ -51,6 +50,8 @@ public class EnemySpawner : ObjectPool
                     return;
                 
                 AllEnemyInCurrentSessionDie?.Invoke();
+                Debug.Log("AllEnemyInCurrentSessionDie");
+                _isAllEnemyInCurrentSessionDie = true;
             }
         }
 
@@ -77,7 +78,6 @@ public class EnemySpawner : ObjectPool
         {
             if (_currentWave.Count <= _spawned)
             {
-                Debug.Log($"null spawn {_currentWave}, {_currentWave.IsNull}");
                 _currentWave.IsNull = true;
             }
         }
@@ -92,7 +92,6 @@ public class EnemySpawner : ObjectPool
 
     private void SetWave(int index)
     {
-        Debug.Log($"Current wave index: {index}");
         _currentWave = _waves[index];
 
         EnemyCountChanged?.Invoke(0, 1);

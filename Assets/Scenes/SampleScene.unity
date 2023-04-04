@@ -1064,6 +1064,18 @@ PrefabInstance:
       value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
+      propertyPath: _intervalBetweenWaves
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
+      propertyPath: _waves.Array.data[0].Count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
+      propertyPath: _waves.Array.data[1].Count
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
       propertyPath: _waves.Array.data[0].DelayBetweenSpawn
       value: 1
       objectReference: {fileID: 0}
@@ -1073,12 +1085,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
       propertyPath: _waves.Array.data[0].Templates.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
       propertyPath: _waves.Array.data[1].Templates.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
+      propertyPath: _waves.Array.data[0].Templates.Array.data[0]
+      value: 
+      objectReference: {fileID: 930697269775036370, guid: f7239f21b8d57b441b1c6227e32f2cf2, type: 3}
     - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
       propertyPath: _waves.Array.data[0].Templates.Array.data[1]
       value: 
@@ -1086,7 +1102,7 @@ PrefabInstance:
     - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
       propertyPath: _waves.Array.data[0].Templates.Array.data[2]
       value: 
-      objectReference: {fileID: 7503687589124594974, guid: 462c484a3a2062a44841ab166b3478d7, type: 3}
+      objectReference: {fileID: 7503687589124594974, guid: e901a66cac7abd44889d7b3cbd56ba7b, type: 3}
     - target: {fileID: 7429306298590990722, guid: 688fe1ed4a5d19347a45baac5d1343e1, type: 3}
       propertyPath: _waves.Array.data[1].Templates.Array.data[1]
       value: 
@@ -1168,8 +1184,9 @@ GameObject:
   - component: {fileID: 442419682}
   - component: {fileID: 442419684}
   - component: {fileID: 442419683}
+  - component: {fileID: 442419685}
   m_Layer: 5
-  m_Name: Money
+  m_Name: MoneyLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1233,6 +1250,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442419681}
   m_CullTransparentMesh: 1
+--- !u!114 &442419685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442419681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845c1e0c34b2b44499e6de100bbc4875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyText: {fileID: 267221026}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,9 +1302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250202dd1c823e0449e1040bd9510255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _trackSpeed: 2
-  _targetPosition: {x: 0, y: 0, z: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1715,7 +1742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Slider: {fileID: 615814418}
-  _text: {fileID: 166314738}
+  _waveCounterText: {fileID: 166314738}
 --- !u!1 &701561799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,7 +2750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08555555, y: 0.076000005}
   m_AnchorMax: {x: 0.929, y: 0.66400003}
-  m_AnchoredPosition: {x: 1.302185, y: 1.8082275}
+  m_AnchoredPosition: {x: 1.3022461, y: 1.8083496}
   m_SizeDelta: {x: -2.6042, y: -6.6157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1148384943
@@ -3564,6 +3591,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377304650}
   m_CullTransparentMesh: 1
+--- !u!1 &1382292064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382292065}
+  - component: {fileID: 1382292066}
+  m_Layer: 5
+  m_Name: MoneyController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1382292065
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382292064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2077911576}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1382292066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382292064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845c1e0c34b2b44499e6de100bbc4875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyText: {fileID: 267221026}
 --- !u!1 &1470807108
 GameObject:
   m_ObjectHideFlags: 0
@@ -3794,6 +3870,7 @@ MonoBehaviour:
   - {fileID: 3265051941781126862, guid: 8079e57a989a04f4a976652326fc6c34, type: 3}
   _template: {fileID: -7665841272550734788, guid: b8c1449cc6dee7d438b1e72d4a08184e, type: 3}
   _itemContainer: {fileID: 181222937}
+  moneyController: {fileID: 0}
 --- !u!1 &1530958491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,6 +4877,7 @@ RectTransform:
   - {fileID: 1172759423}
   - {fileID: 1150143484}
   - {fileID: 1521861401}
+  - {fileID: 1382292065}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

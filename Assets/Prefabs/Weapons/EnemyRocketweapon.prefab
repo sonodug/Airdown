@@ -145,6 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  Speed: 8
+  Speed: 6
   ShootEffect: {fileID: 0}
   ExplosionEffect: {fileID: 0}

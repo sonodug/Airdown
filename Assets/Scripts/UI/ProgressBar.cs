@@ -5,7 +5,7 @@ using Zenject;
 public class ProgressBar : Bar
 {
     [Inject] private EnemySpawner _spawner;
-    [SerializeField] private TMP_Text _text;
+    [SerializeField] private TMP_Text _waveCounterText;
 
     private static int _counter = 1;
 
@@ -28,7 +28,7 @@ public class ProgressBar : Bar
     {
         _counter++;
         string counter = _counter.ToString();
-        _text.text = "Wave: " + counter;
+        _waveCounterText.text = "Wave: " + counter;
     }
 
     private void ResetValue()

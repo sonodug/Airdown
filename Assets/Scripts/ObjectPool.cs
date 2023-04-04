@@ -18,10 +18,12 @@ public class ObjectPool : MonoBehaviour
 
     protected void Initialize(List<GameObject> prefabs, int count)
     {
-        Debug.Log($"Current wave count {count}");
         _poolOffset = count;
         IsAllEnemyInCurrentWaveDie = false;
-
+        
+        if (_pool.Count != 0)
+            _pool.Clear();
+        
         for (int i = 0; i < count; i++)
         {
             int randomIndex = Random.Range(0, prefabs.Count);
