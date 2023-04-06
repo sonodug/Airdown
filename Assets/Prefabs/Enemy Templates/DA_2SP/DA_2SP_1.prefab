@@ -132,7 +132,7 @@ MonoBehaviour:
   - {fileID: 2381562486664907207}
   - {fileID: 2294263499569329219}
   _shootDelaySpread: 3
-  _weapon: {fileID: 1747011971051381335, guid: 35d4ae7142c78264db64f76e7ec40a41, type: 3}
+  Weapon: {fileID: -6128801395139454128, guid: 35d4ae7142c78264db64f76e7ec40a41, type: 3}
 --- !u!114 &3390826689361417167
 MonoBehaviour:
   m_ObjectHideFlags: 0

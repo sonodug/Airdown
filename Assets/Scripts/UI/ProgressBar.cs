@@ -34,5 +34,7 @@ public class ProgressBar : Bar
     private void ResetValue()
     {
         Slider.value = 0;
+        PrevValue = 0;
+        CurrentValue = 0;
     }
 }

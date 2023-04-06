@@ -25,6 +25,7 @@ pointmovement (with self guided)
 move imovable tupizna
 
 04.04.23
+weapon system hueva
 move imovable tupizna fix
 self guided enemy
 boss1
@@ -41,3 +42,6 @@ build levels
 graphic particles and sprites
 
 k 08 dodsesasdelat, potim ai
+
+lerp bars
+health bars on planes

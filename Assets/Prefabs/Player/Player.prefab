@@ -151,6 +151,7 @@ MonoBehaviour:
   _shootPoints:
   - {fileID: 8205171039904635426}
   _shootDelay: 0.2
+  _money: 0
 --- !u!114 &8205171041141143509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +167,7 @@ MonoBehaviour:
   _price: 0
   _icon: {fileID: 0}
   _isBuyed: 0
-  Weapon: {fileID: 8930298027567058400, guid: f3d97d6d5275c3a4688aef643ce77dfe, type: 3}
+  Weapon: {fileID: 6247246769973780148, guid: f3d97d6d5275c3a4688aef643ce77dfe, type: 3}
 --- !u!68 &8626860654577325361
 EdgeCollider2D:
   m_ObjectHideFlags: 0

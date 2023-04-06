@@ -9,22 +9,26 @@ public class Aircraft : Enemy
 
     [Range(2.0f, 6.0f)]
     [SerializeField] private float _shootDelaySpread;
-    [SerializeField] private EnemyWeapon _weapon;
+    [SerializeField] protected EnemyWeapon Weapon;
 
     private float _timeAfterLastShoot;
+    private Health _eventHealth;
 
     protected IMovable PlaneMovement;
-    private Health _eventHealth;
+    private SpriteRenderer _renderer;
+    protected bool IsReadyToShoot;
 
     protected virtual void Awake()
     {
         InitBehaviours();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
+        _renderer = GetComponent<SpriteRenderer>();
         _shootDelaySpread = Random.Range(2, _shootDelaySpread);
         Movement.Move(Target);
+        Movement.Move();
     }
 
     private void OnEnable()
@@ -41,19 +45,27 @@ public class Aircraft : Enemy
     {
         foreach (var t in _shootPoints)
         {
-            Instantiate(_weapon, t.position, Quaternion.identity);
+            EnemyWeapon weapon = Instantiate(Weapon, t.position, Quaternion.identity);
+            weapon.InitTarget(Target);
         }
     }
 
     private void Update()
     {
+        CheckInCameraView();
+        
         _timeAfterLastShoot += Time.deltaTime;
 
-        if (_timeAfterLastShoot >= _shootDelaySpread)
+        if (_timeAfterLastShoot >= _shootDelaySpread && IsReadyToShoot)
         {
             Shoot();
             _timeAfterLastShoot = 0;
         }
+    }
+
+    private void CheckInCameraView()
+    {
+        IsReadyToShoot = _renderer.isVisible;
     }
 
     protected override void InitBehaviours()

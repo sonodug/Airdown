@@ -1,28 +1,21 @@
 using UnityEngine;
 
-public class EnemyWeapon : Weapon
+public abstract class EnemyWeapon : MonoBehaviour
 {
+    [SerializeField] protected float Damage;
+    [SerializeField] protected float Speed;
+
+    protected Player Target;
+    
     private void Update()
     {
         MoveWeapon();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<Player>(out Player player))
-        {
-            player.GetDamage(Damage);
-            Destroy(gameObject);
-        }
-        
-        if (collision.gameObject.TryGetComponent<DestroyerObstacle>(out DestroyerObstacle obstacle))
-        {
-            Destroy(gameObject);
-        }
-    }
+    public abstract void MoveWeapon();
 
-    public override void MoveWeapon()
+    public void InitTarget(Player target)
     {
-        transform.Translate(Vector2.down * (Speed * Time.deltaTime));
+        Target = target;
     }
 }

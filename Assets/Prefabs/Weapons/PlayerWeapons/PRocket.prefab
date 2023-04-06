@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3681809990304698137}
   - component: {fileID: 3681809990304698136}
   - component: {fileID: -2708796713075788460}
-  - component: {fileID: 8930298027567058400}
   - component: {fileID: -4905455489166755828}
+  - component: {fileID: 6247246769973780148}
   m_Layer: 7
-  m_Name: PlayerRocketweapon
+  m_Name: PRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3681809990304698138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.46, y: -1.81, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,22 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1821332, y: 0.4352485}
   m_EdgeRadius: 0
---- !u!114 &8930298027567058400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3681809990304698138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6fe2b526a1137488b3236e63580f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 5
-  Speed: 15
-  ShootEffect: {fileID: 0}
-  ExplosionEffect: {fileID: 0}
 --- !u!50 &-4905455489166755828
 Rigidbody2D:
   serializedVersion: 4
@@ -148,3 +132,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6247246769973780148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681809990304698138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab489289e22747e6946c56cf47b63c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 5
+  Speed: 7
