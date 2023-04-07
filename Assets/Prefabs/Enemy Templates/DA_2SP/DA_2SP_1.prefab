@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyEffect: {fileID: 0}
-  Reward: 2
+  Reward: 3
   _health: 1
   _shootPoints:
   - {fileID: 2381562486664907207}

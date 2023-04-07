@@ -110,7 +110,6 @@ public class EnemySpawner : ObjectPool
 
     private void SetWave(int index)
     {
-        Debug.Log(index);
         _currentWave = _levels[_currentLevelIndex].Waves[index];
 
         EnemyCountChanged?.Invoke(0, 1);

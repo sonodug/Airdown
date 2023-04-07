@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 public class Shop : MonoBehaviour
 {
+    [Inject] private Player _player;
     [SerializeField] private List<WeaponViewModel> _weaponViewModels = new List<WeaponViewModel> ();
     [SerializeField] private WeaponView _template;
     [SerializeField] private GameObject _itemContainer;
@@ -32,13 +34,11 @@ public class Shop : MonoBehaviour
 
     private void TrySellPlane(WeaponViewModel weaponViewModel, WeaponView view)
     {
-        if (weaponViewModel.Price >= _moneyController.MoneyBank)
+        if (weaponViewModel.Price <= _moneyController.MoneyBank)
         {
-            Debug.Log("kal");
-        }
-        else
-        {
-            
+            weaponViewModel.DisableButton();
+            _player.ApplyWeaponBuyOffer(weaponViewModel.Weapon);
+            _player.DecreaseBalance(weaponViewModel.Price);
         }
     }
 }

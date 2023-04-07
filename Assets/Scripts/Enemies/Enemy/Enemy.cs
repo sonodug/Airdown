@@ -21,6 +21,6 @@ public abstract class Enemy : MonoBehaviour
     }
     
     protected abstract void InitBehaviours();
-    public abstract void Attacked(float damage);
     protected abstract void OnDied();
+    public abstract void Attacked(float damage);
 }

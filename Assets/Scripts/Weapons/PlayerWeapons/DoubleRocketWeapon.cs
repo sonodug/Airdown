@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PRocket : PlayerWeapon
+public class DoubleRocketWeapon : PlayerWeapon
 {
     protected override void OnTriggerEnter2D(Collider2D collision)
     {

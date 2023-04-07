@@ -27,7 +27,7 @@ public class WeaponView : MonoBehaviour
     private void TryLockItem()
     {
         if (_weaponViewModel.IsBuyed)
-            _sellButton.interactable = false; //вместе этого бы удалить нахуй это окно после закрытия
+            _sellButton.interactable = false;
     }
 
     public void Render(WeaponViewModel weaponViewModel)

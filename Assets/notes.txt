@@ -48,3 +48,21 @@ agility to use skills
 --infinite level progression 
 
 --damage multiplier (shop)
+
+
+07: по порядку в идеале
+shop system
+new player weapons
+inventory system
+infinite levels
+paru troyku obosrannih new enemy + 2 bossya))
+
+08:
+attempts history
+
+graphic:
+new sprites
+effects
+map
+
+остается только допил до полуидеала

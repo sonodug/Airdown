@@ -11,5 +11,7 @@ public abstract class PlayerWeapon : MonoBehaviour
         MoveWeapon();
     }
 
-    public abstract void MoveWeapon();
+    protected abstract void MoveWeapon();
+    protected abstract void OnTriggerEnter2D(Collider2D collision);
+    public abstract void Accept(IWeaponVisitor visitor);
 }

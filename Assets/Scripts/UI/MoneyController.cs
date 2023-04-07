@@ -25,6 +25,6 @@ public class MoneyController : MonoBehaviour
     private void OnMoneyChanged(float money)
     {
         _moneyBank = money;
-        _moneyText.text = money.ToString();
+        _moneyText.text = _moneyBank.ToString();
     }
 }
