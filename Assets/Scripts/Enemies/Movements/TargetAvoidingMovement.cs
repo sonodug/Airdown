@@ -49,7 +49,6 @@ public class TargetAvoidingMovement : MonoBehaviour, IMovable
         {
             if (Random.Range(0, 100) <= _avoidProbability * 100)
             {
-                Debug.Log("kal 3");
                 _currentState = State.AvoidRocket;
                 
                 if (transform.position.x < 0.0f)
@@ -132,7 +131,6 @@ public class TargetAvoidingMovement : MonoBehaviour, IMovable
 
         if (transform.position.x == targetPosition.x)
         {
-            Debug.Log("kaka 2 kaka");
             _currentState = State.FollowingTarget;
         }
     }

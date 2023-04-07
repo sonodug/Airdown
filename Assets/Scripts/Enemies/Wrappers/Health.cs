@@ -5,6 +5,8 @@ public class Health : IDamageable
 {
     public float Value { get; private set; }
 
+    private float _maxValue;
+
     public event UnityAction Died;
 
     private IDyingPolicy _dyingPolicy;
@@ -13,18 +15,21 @@ public class Health : IDamageable
     {
         _dyingPolicy = dyingPolicy;
         Value = value;
+        _maxValue = value;
     }
 
-    public void ApplyDamage(float damage)
+    public float ApplyDamage(float damage)
     {
         Value -= damage;
 
         if (Value < 0)
             Value = 0;
-
+        
         if (_dyingPolicy.Died(Value))
         {
             Died?.Invoke();
         }
+
+        return Value;
     }
 }

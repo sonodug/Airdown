@@ -6,23 +6,13 @@ public class PauseControl : MonoBehaviour
 {
     public static bool GameIsPaused;
     
-    void Update()
+    public static void UnPause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameIsPaused = !GameIsPaused;
-            PauseGame();
-        }
+        Time.timeScale = 1;
     }
-    public static void PauseGame ()
+
+    public static void Pause()
     {
-        if(GameIsPaused)
-        {
-            Time.timeScale = 0f;
-        }
-        else 
-        {
-            Time.timeScale = 1;
-        }
+        Time.timeScale = 0;
     }
 }

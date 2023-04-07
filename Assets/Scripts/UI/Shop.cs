@@ -5,34 +5,34 @@ using Zenject;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private List<Plane> _planes = new List<Plane> ();
-    [SerializeField] private PlaneView _template;
+    [SerializeField] private List<WeaponViewModel> _weaponViewModels = new List<WeaponViewModel> ();
+    [SerializeField] private WeaponView _template;
     [SerializeField] private GameObject _itemContainer;
-    [SerializeField] private MoneyController moneyController;
+    [SerializeField] private MoneyController _moneyController;
 
     private void Start()
     {
-        foreach (var plane in _planes)
+        foreach (var plane in _weaponViewModels)
         {
             AddItem(plane);
         }
     }
 
-    private void AddItem(Plane plane)
+    private void AddItem(WeaponViewModel weaponViewModel)
     {
         var view = Instantiate(_template, _itemContainer.transform);
         view.SellButtonClick += OnSellButtonClick;
-        view.Render(plane);
+        view.Render(weaponViewModel);
     }
 
-    private void OnSellButtonClick(Plane plane, PlaneView view)
+    private void OnSellButtonClick(WeaponViewModel weaponViewModel, WeaponView view)
     {
-        TrySellPlane(plane, view);
+        TrySellPlane(weaponViewModel, view);
     }
 
-    private void TrySellPlane(Plane plane, PlaneView view)
+    private void TrySellPlane(WeaponViewModel weaponViewModel, WeaponView view)
     {
-        if (plane.Price >= moneyController.MoneyBank)
+        if (weaponViewModel.Price >= _moneyController.MoneyBank)
         {
             Debug.Log("kal");
         }

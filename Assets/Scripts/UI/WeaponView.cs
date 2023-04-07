@@ -3,14 +3,14 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-public class PlaneView : MonoBehaviour
+public class WeaponView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _price;
     [SerializeField] private Image _icon;
     [SerializeField] private Button _sellButton;
 
-    private Plane _plane;
-    public event UnityAction<Plane, PlaneView> SellButtonClick;
+    private WeaponViewModel _weaponViewModel;
+    public event UnityAction<WeaponViewModel, WeaponView> SellButtonClick;
 
     private void OnEnable()
     {
@@ -26,19 +26,19 @@ public class PlaneView : MonoBehaviour
 
     private void TryLockItem()
     {
-        if (_plane.IsBuyed)
+        if (_weaponViewModel.IsBuyed)
             _sellButton.interactable = false; //вместе этого бы удалить нахуй это окно после закрытия
     }
 
-    public void Render(Plane plane)
+    public void Render(WeaponViewModel weaponViewModel)
     {
-        _plane = plane;
-        _price.text = plane.Price.ToString();
-        _icon.sprite = plane.Icon;
+        _weaponViewModel = weaponViewModel;
+        _price.text = weaponViewModel.Price.ToString();
+        _icon.sprite = weaponViewModel.Icon;
     }
 
     private void OnButtonCLick()
     {
-        SellButtonClick?.Invoke(_plane, this);
+        SellButtonClick?.Invoke(_weaponViewModel, this);
     }
 }

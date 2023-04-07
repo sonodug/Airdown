@@ -6,7 +6,7 @@ using Zenject;
 
 public class EnemySpawner : ObjectPool
 {
-    [SerializeField] private List<Wave> _waves;
+    [SerializeField] private List<Level> _levels;
     [Inject] private Player _target;
 
     [SerializeField] private List<Transform> _spawnPoints;
@@ -19,7 +19,11 @@ public class EnemySpawner : ObjectPool
 
     private bool _isAllEnemyInCurrentSessionDie = false;
 
+    private Level _currentLevel;
+    private int _currentLevelIndex = 0;
+    
     public event UnityAction<int, int> EnemyCountChanged;
+    public event UnityAction<int> LevelCountChanged;
     public event UnityAction AllEnemyInCurrentSessionDie;
    
     private void Start()
@@ -29,29 +33,43 @@ public class EnemySpawner : ObjectPool
 
     private void Update()
     {
-        SpawnWithSpread();
+        InitLevel();
     }
 
-    private void SpawnWithSpread()
+    private void InitLevel()
+    {
+        SpawnWave();
+    }
+    
+    // время придет
+    private void SpawnWave()
     {
         if (IsAllEnemyInCurrentWaveDie)
         {
             _timeBetweenWaves += Time.deltaTime;
             
-            if (_waves.Count > _currentWaveIndex + 1 && _timeBetweenWaves >= _intervalBetweenWaves)
+            if (_levels[_currentLevelIndex].Waves.Count > _currentWaveIndex + 1 && _timeBetweenWaves >= _intervalBetweenWaves)
             {
                 _timeBetweenWaves = 0;
-                
                 NextWave();
             }
             else
             {
-                if (_isAllEnemyInCurrentSessionDie)
-                    return;
-                
                 AllEnemyInCurrentSessionDie?.Invoke();
                 Debug.Log("AllEnemyInCurrentSessionDie");
-                _isAllEnemyInCurrentSessionDie = true;
+                
+                _currentLevelIndex++;
+
+                if (_levels.Count < _currentLevelIndex)
+                {
+                    LevelCountChanged?.Invoke(_currentLevelIndex + 1);
+                    _currentWaveIndex = -1;
+                }
+                else
+                {
+                    Debug.Log("AAAAAAAAAA");
+                    return;
+                }
             }
         }
 
@@ -92,7 +110,8 @@ public class EnemySpawner : ObjectPool
 
     private void SetWave(int index)
     {
-        _currentWave = _waves[index];
+        Debug.Log(index);
+        _currentWave = _levels[_currentLevelIndex].Waves[index];
 
         EnemyCountChanged?.Invoke(0, 1);
         Initialize(_currentWave.Templates, _currentWave.Count);
@@ -113,4 +132,10 @@ public class Wave
     public float DelayBetweenSpawn;
     public int Count;
     public bool IsNull = false;
+}
+
+[System.Serializable]
+public class Level
+{
+    public List<Wave> Waves;
 }

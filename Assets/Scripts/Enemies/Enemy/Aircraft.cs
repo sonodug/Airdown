@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Aircraft : Enemy
@@ -13,9 +14,9 @@ public class Aircraft : Enemy
 
     private float _timeAfterLastShoot;
     private Health _eventHealth;
+    private SpriteRenderer _renderer;
 
     protected IMovable PlaneMovement;
-    private SpriteRenderer _renderer;
     protected bool IsReadyToShoot;
 
     protected virtual void Awake()
@@ -78,7 +79,7 @@ public class Aircraft : Enemy
 
     public override void Attacked(float damage)
     {
-        Health.ApplyDamage(damage);
+        HealthChanged?.Invoke(Health.ApplyDamage(damage), _health);
     }
 
     protected override void OnDied()

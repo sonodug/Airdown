@@ -8,7 +8,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int Reward;
 
     [Inject] protected Player Target;
+    
     public UnityAction Died;
+    public UnityAction<float, float> HealthChanged;
     
     protected IDamageable Health;
     protected IMovable Movement;

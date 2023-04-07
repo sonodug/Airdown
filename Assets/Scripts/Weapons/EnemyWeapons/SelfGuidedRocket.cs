@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SelfGuidedRocket : EnemyWeapon
 {
@@ -7,6 +8,15 @@ public class SelfGuidedRocket : EnemyWeapon
     [SerializeField] private int _hitsToDestroy;
     
     [SerializeField] private float _rotationSpeed;
+
+    private int _currentHealth;
+
+    public UnityAction<float, float> HealthChanged;
+
+    private void Start()
+    {
+        _currentHealth = _hitsToDestroy;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,10 +33,11 @@ public class SelfGuidedRocket : EnemyWeapon
         
         if (collision.gameObject.TryGetComponent<PlayerWeapon>(out PlayerWeapon weapon))
         {
-            _hitsToDestroy -= 1;
+            _currentHealth -= 1;
+            HealthChanged?.Invoke(_currentHealth, _hitsToDestroy);
             Destroy(weapon.gameObject);
             
-            if (_hitsToDestroy == 0)
+            if (_currentHealth == 0)
                 Destroy(gameObject);
         }
     }

@@ -1,19 +1,21 @@
 public class ShieldArmor : IDamageable
 {
     private IDamageable _damageable;
-    private float _shieldHealth;
+    private float _shieldEndurance;
 
-    public ShieldArmor(IDamageable damageable, float shieldHealth)
+    public ShieldArmor(IDamageable damageable, float shieldEndurance)
     {
         _damageable = damageable;
-        _shieldHealth = shieldHealth;
+        _shieldEndurance = shieldEndurance;
     }
 
-    public void ApplyDamage(float damage)
+    public float ApplyDamage(float damage)
     {
-        _shieldHealth -= damage;
+        _shieldEndurance -= damage;
 
-        if (_shieldHealth <= 0)
+        if (_shieldEndurance <= 0)
             _damageable.ApplyDamage(damage);
+
+        return _shieldEndurance;
     }
 }

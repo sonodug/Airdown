@@ -7,10 +7,6 @@ basic improved plane (dodge + new rocket)
 laser
 self-guided
 
-(state machine)
-1.targetoffsetpoint
-2.with delay
-
 money validation
 player progression
 
@@ -45,3 +41,10 @@ k 08 dodsesasdelat, potim ai
 
 lerp bars
 health bars on planes
+multiply shake and sound effect by damage
+
+agility to use skills
+
+--infinite level progression 
+
+--damage multiplier (shop)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class SpawnProgressBar : Bar
+public class SpawnProgressBar : GameStatusBar
 {
     [Inject] private EnemySpawner _spawner;
 

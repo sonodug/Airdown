@@ -49,7 +49,7 @@ public class KamikazeAircraft : Enemy
 
     public override void Attacked(float damage)
     {
-        Health.ApplyDamage(damage);
+        HealthChanged?.Invoke(Health.ApplyDamage(damage), _health);
     }
 
     protected override void OnDied()
