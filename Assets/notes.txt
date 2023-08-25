@@ -65,4 +65,10 @@ new sprites
 effects
 map
 
+08:
+plane characteristic upgrades (shop)
+inventory system
+player weapons (explosion, laser + self guided)
+infinite level generation
+
 остается только допил до полуидеала

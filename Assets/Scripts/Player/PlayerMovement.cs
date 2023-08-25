@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _tapEvadeForce;
     [SerializeField] private float _clampX;
 
     private Vector3 _movementVector
